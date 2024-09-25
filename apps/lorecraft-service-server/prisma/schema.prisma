@@ -1,0 +1,53 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Recipe {
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  ingredients String?
+  name        String?
+  output      String?
+  updatedAt   DateTime @updatedAt
+}
+
+model MiningResource {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String?
+  quantity  Int?
+  typeField String?
+  updatedAt DateTime @updatedAt
+}
+
+model Biome {
+  createdAt             DateTime @default(now())
+  description           String?
+  id                    String   @id @default(cuid())
+  name                  String?
+  uniqueCharacteristics String?
+  updatedAt             DateTime @updatedAt
+}
+
+model PlayerData {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  inventory Json?
+  progress  String?
+  updatedAt DateTime @updatedAt
+  username  String?
+}
+
+model Npc {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String?
+  quest     String?
+  role      String?
+  updatedAt DateTime @updatedAt
+}
